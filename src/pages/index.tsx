@@ -19,7 +19,7 @@ export default function Home() {
         <div style={{ paddingBottom: 16 }} className={styles.description}>
           <p>
             Your&nbsp;
-            <code className={styles.code}>Video </code>
+            <code className={styles.code}>Beer </code>
             Manager
           </p>
           <div>
