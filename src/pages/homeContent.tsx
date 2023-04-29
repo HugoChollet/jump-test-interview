@@ -1,9 +1,8 @@
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import { Card } from "@/component/Card/Card.component";
 import { useEffect, useState } from "react";
-import { List } from "@mui/material";
 import { BeerList } from "@/component/BeerList/BeerList.component";
+import { RandomCards } from "@/component/RandomCards/RandomCards";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +22,7 @@ export default function HomeContent() {
 
   return (
     <div>
+      <RandomCards beerData={beers} />
       <BeerList items={beers} />
     </div>
   );
