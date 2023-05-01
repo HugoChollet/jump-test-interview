@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Card } from "../Card/Card.component";
+import { useRouter } from "next/router";
 
 export const RandomCards = ({ beerData }: any) => {
   const [selectedCards, setSelectedCards] = useState<number[]>();
+  const router = useRouter();
 
   const shuffleCards = () => {
     return [
@@ -27,13 +29,33 @@ export const RandomCards = ({ beerData }: any) => {
         <>
           <Card
             title={beerData[selectedCards[0]].name}
-            link="https://www.google.com"
             description={beerData[selectedCards[0]].description}
+            updateContext={() => {
+              router.push(
+                {
+                  pathname: "/details",
+                  query: {
+                    data: JSON.stringify(beerData[selectedCards[0]]),
+                  },
+                },
+                "/details"
+              );
+            }}
           />
           <Card
             title={beerData[selectedCards[1]].name}
-            link="https://www.google.com"
             description={beerData[selectedCards[1]].description}
+            updateContext={() => {
+              router.push(
+                {
+                  pathname: "/details",
+                  query: {
+                    data: JSON.stringify(beerData[selectedCards[1]]),
+                  },
+                },
+                "/details"
+              );
+            }}
           />
         </>
       )}
