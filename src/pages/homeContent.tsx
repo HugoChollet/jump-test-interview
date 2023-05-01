@@ -1,29 +1,25 @@
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { useEffect, useState } from "react";
 import { BeerList } from "@/component/BeerList/BeerList.component";
 import { RandomCards } from "@/component/RandomCards/RandomCards";
+import { useQuery } from "react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function HomeContent() {
-  const [beers, setBeers] = useState([]);
+  const { isLoading, error, data } = useQuery("repoData", () =>
+    fetch("https://api.punkapi.com/v2/beers?per_page=10").then((res) =>
+      res.json()
+    )
+  );
 
-  const fetchBeers = async () => {
-    const res = await fetch("https://api.punkapi.com/v2/beers?per_page=10");
-    const data = await res.json();
-    setBeers(data);
-    console.log(beers);
-  };
+  if (isLoading) return "Loading...";
 
-  useEffect(() => {
-    fetchBeers();
-  }, []);
+  if (error) return "An error has occurred: " + error;
 
   return (
     <div>
-      <RandomCards beerData={beers} />
-      <BeerList items={beers} />
+      <RandomCards beerData={data} />
+      <BeerList items={data} />
     </div>
   );
 }
