@@ -1,11 +1,8 @@
-import { Inter } from "next/font/google";
 import { BeerList } from "@/component/BeerList/BeerList.component";
 import { RandomCards } from "@/component/RandomCards/RandomCards";
 import { useQuery } from "react-query";
 import { TextField } from "@mui/material";
 import { useState } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function HomeContent() {
   const { isLoading, error, data } = useQuery("repoData", () =>
@@ -15,9 +12,9 @@ export default function HomeContent() {
   );
   const [filterSearch, setFilterSearch] = useState("");
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <div>Loading...</div>;
 
-  if (error) return "An error has occurred: " + error;
+  if (error) return <>An error has occurred: {error}</>;
 
   return (
     <div>

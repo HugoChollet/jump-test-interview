@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card } from "../Card/Card.component";
 import { useRouter } from "next/router";
+import { BeerData } from "@/types/BeerDataType";
 
-export const RandomCards = ({ beerData }: any) => {
+export const RandomCards = ({ beerData }: { beerData: Array<BeerData> }) => {
   const [selectedCards, setSelectedCards] = useState<number[]>();
   const router = useRouter();
 

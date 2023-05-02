@@ -2,17 +2,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@mui/material";
+import { BeerData } from "@/types/BeerDataType";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Details(props: any) {
-  console.log(props);
+export default function Details() {
   const router = useRouter();
-  const [details, setDetails] = useState<any>();
+  const [details, setDetails] = useState<BeerData>();
 
   useEffect(() => {
     if (router.query.data) setDetails(JSON.parse(router.query.data));
-    console.log(details);
   }, [router.query]);
 
   return (
